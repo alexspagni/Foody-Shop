@@ -41,7 +41,7 @@ userRouter.post(
       res.status(400);
       throw new Error("User already exists");
     }
-// User.Crete crea un nuovo utente e lo salva subito nel database. Quindi bisogna fare anche user.save
+// User.Crete crea un nuovo utente e lo salva subito nel database. Quindi non bisogna fare anche user.save
     const user = await User.create({
       name,
       email,
@@ -111,17 +111,6 @@ userRouter.put(
       res.status(404);
       throw new Error("User not found");
     }
-  })
-);
-
-// GET ALL USER ADMIN
-userRouter.get(
-  "/",
-  protect,
-  admin,
-  asyncHandler(async (req, res) => {
-    const users = await User.find({});
-    res.json(users);
   })
 );
 

@@ -64,7 +64,7 @@ export const productCreateReducer = (state = {}, action) => {
 
 // EDIT PRODUCT
 export const productEditReducer = (
-  state = { product: { reviews: [] } },
+  state = {},
   action
 ) => {
   switch (action.type) {

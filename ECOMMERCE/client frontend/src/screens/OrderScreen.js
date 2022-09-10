@@ -44,7 +44,7 @@ const OrderScreen = ({ match }) => {
       };
       document.body.appendChild(script);
     };
-    console.log (successPay)
+    //console.log (successPay)
     if (!order || successPay) {
       dispatch({ type: ORDER_PAY_RESET });
       dispatch(getOrderDetails(orderId));

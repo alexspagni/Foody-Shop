@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import Rating from "./Rating";
-import Pagination from "./pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { listProduct } from "../../Redux/Actions/ProductActions";
 import Loading from "../LoadingError/Loading";
@@ -50,11 +48,6 @@ const ShopSection = (props) => {
                                 {product.name}
                               </Link>
                             </p>
-
-                            <Rating
-                              value={product.rating}
-                              text={`${product.numReviews} reviews`}
-                            />
                             <h3>€{product.price}</h3>
                           </div>
                         </div>
