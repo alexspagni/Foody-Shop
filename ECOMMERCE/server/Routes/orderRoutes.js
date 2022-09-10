@@ -30,13 +30,14 @@ orderRouter.post(
         user: req.user._id,
         shippingAddress,
         paymentMethod,
-        itemsPrice,
+        // nel caso inserisci itemsPrice qui se NON FUNZIONA QUI
         taxPrice,
         shippingPrice,
         totalPrice,
       });
 
       const createOrder = await order.save();
+      // in create order si avrà anche l'id dell'ordine
       res.status(201).json(createOrder);
     }
   })
@@ -59,6 +60,7 @@ orderRouter.get(
   "/",
   protect,
   asyncHandler(async (req, res) => {
+    // vado ad estrarre tutti gli ordini che hanno come campo id pari all'id dell'utente che sta facendo il fetch degli ordini
     const order = await Order.find({ user: req.user._id }).sort({ _id: -1 });
     res.json(order);
   })

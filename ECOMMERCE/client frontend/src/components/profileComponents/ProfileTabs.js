@@ -44,6 +44,7 @@ const ProfileTabs = () => {
       }
     } else {
       dispatch(updateUserProfile({ id: user._id, name, email, password }));
+      // se un container non sta visualizzando un messaggio toast allota entro nella funzione
       if (!toast.isActive(toastId.current)) {
         toastId.current = toast.success("Profile Updated", Toastobjects);
       }

@@ -19,6 +19,7 @@ const OrderScreen = ({ match }) => {
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, loading, error } = orderDetails;
   const orderPay = useSelector((state) => state.orderPay);
+  // assegnado loading : loadingPay -->vado a rinominare loading come loadingPay, in modo da non avere variabili duplicate. 
   const { loading: loadingPay, success: successPay } = orderPay;
 
   if (!loading) {
@@ -43,6 +44,7 @@ const OrderScreen = ({ match }) => {
       };
       document.body.appendChild(script);
     };
+    console.log (successPay)
     if (!order || successPay) {
       dispatch({ type: ORDER_PAY_RESET });
       dispatch(getOrderDetails(orderId));

@@ -34,6 +34,7 @@ userSchema.methods.matchPassword = async function (enterPassword) {
 
 // Register
 userSchema.pre("save", async function (next) {
+  // con this si sta facendo riferimento all'utente che andiamo a salvare. Questo perchè quando si usa "function" this si riferisce all'oggetto che l'ha invocata 
   if (!this.isModified("password")) {
     next();
   }

@@ -1,7 +1,9 @@
 const notFound = (req, res, next) => {
   const error = new Error(`Not found - ${req.originalUrl}`);
+  console.log("sono qui")
   res.status(404);
-  next(error);
+  next(error);// attraverso next( error) viene chiamato la funzione errorHandler 
+
 };
 
 const errorHandler = (err, req, res, next) => {

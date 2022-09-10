@@ -12,12 +12,14 @@ const Login = ({ location, history }) => {
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
+  //se sono stati passati dei parametri a questa pagina allora si viene redirezionati verso la pagina indicata da parametri, altrimenti si viene redirezionati verso la pagina principale, cioè Home
   const redirect = location.search ? location.search.split("=")[1] : "/";
 
   const userLogin = useSelector((state) => state.userLogin);
   const { error, loading, userInfo } = userLogin;
 
   useEffect(() => {
+    //Se l'utente ha già fatto una volta l'accesso viene redirezionato verso il pannello di acquisiti
     if (userInfo) {
       history.push(redirect);
     }

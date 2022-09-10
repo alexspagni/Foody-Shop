@@ -22,8 +22,8 @@ app.get("/api/config/paypal", (req, res) => { //api pagamento
 });
 
 // ERROR HANDLER
-app.use(notFound);
-app.use(errorHandler);
+app.use(notFound);// questo middelware viene eseguito quando nessuna route viene raggiunta
+app.use(errorHandler);// questo middelware è quelle personalizzato per la gestione degli errori
 
 const PORT = process.env.PORT || 1000;
 

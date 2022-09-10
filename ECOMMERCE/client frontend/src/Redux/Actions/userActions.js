@@ -49,6 +49,7 @@ export const login = (email, password) => async (dispatch) => {
 
 // LOGOUT
 export const logout = () => (dispatch) => {
+  // andando ad eseguire removeItem vado a far riaggiornare lo store settando le credenziali dell'utente a null
   localStorage.removeItem("userInfo");
   dispatch({ type: USER_LOGOUT });
   dispatch({ type: USER_DETAILS_RESET });

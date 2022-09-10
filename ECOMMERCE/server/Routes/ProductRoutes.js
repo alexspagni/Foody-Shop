@@ -19,6 +19,7 @@ productRoute.get(
           },
         }
       : {};
+      //recupero tutti gli elementi che macciano la regex scritta sopra e faccio in modo di ritornarne solo una certa quantità di prodotti
     const count = await Product.countDocuments({ ...keyword });
     const products = await Product.find({ ...keyword })
       .limit(pageSize)

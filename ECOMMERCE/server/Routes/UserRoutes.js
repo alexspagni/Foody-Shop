@@ -41,7 +41,7 @@ userRouter.post(
       res.status(400);
       throw new Error("User already exists");
     }
-
+// User.Crete crea un nuovo utente e lo salva subito nel database. Quindi bisogna fare anche user.save
     const user = await User.create({
       name,
       email,
@@ -91,13 +91,13 @@ userRouter.put(
   protect,
   asyncHandler(async (req, res) => {
     const user = await User.findById(req.user._id);
-
     if (user) {
       user.name = req.body.name || user.name;
       user.email = req.body.email || user.email;
       if (req.body.password) {
         user.password = req.body.password;
       }
+      // in questo caso save va a sovrascivere i dati dell'utente con i nuovi inseriti
       const updatedUser = await user.save();
       res.json({
         _id: updatedUser._id,
