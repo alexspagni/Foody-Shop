@@ -10,7 +10,7 @@ import moment from "moment";
 import axios from "axios";
 import { ORDER_PAY_RESET } from "../Redux/Constants/OrderConstants";
 
-const OrderScreen = ({ match }) => {
+const OrderScreen = ({ match,history }) => {
   window.scrollTo(0, 0);
   const [sdkReady, setSdkReady] = useState(false);
   const orderId = match.params.id;
@@ -31,7 +31,6 @@ const OrderScreen = ({ match }) => {
       order.orderItems.reduce((acc, item) => acc + item.price * item.qty, 0)
     );
   }
-
   useEffect(() => {
     const addPayPalScript = async () => {
       const { data: clientId } = await axios.get("/api/config/paypal");

@@ -9,8 +9,6 @@ const productRoute = express.Router();
 productRoute.get(
   "/",
   asyncHandler(async (req, res) => {
-    const pageSize = 12;
-    const page = Number(req.query.pageNumber) || 1;
     const keyword = req.query.keyword
       ? {
           name: {
@@ -20,25 +18,11 @@ productRoute.get(
         }
       : {};
       //recupero tutti gli elementi che macciano la regex scritta sopra e faccio in modo di ritornarne solo una certa quantità di prodotti
-    const count = await Product.countDocuments({ ...keyword });
-    const products = await Product.find({ ...keyword })
-      .limit(pageSize)
-      .skip(pageSize * (page - 1))
-      .sort({ _id: -1 });
-    res.json({ products, page, pages: Math.ceil(count / pageSize) });
+    const products = await Product.find({ ...keyword });
+    res.json({ products});
   })
 );
 
-// ADMIN GET ALL PRODUCT WITHOUT SEARCH AND PEGINATION
-productRoute.get(
-  "/all",
-  protect,
-  admin,
-  asyncHandler(async (req, res) => {
-    const products = await Product.find({}).sort({ _id: -1 });
-    res.json(products);
-  })
-);
 
 // GET SINGLE PRODUCT
 productRoute.get(
