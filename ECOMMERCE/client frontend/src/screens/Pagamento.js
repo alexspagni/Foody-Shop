@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { savePaymentMethod } from "../Redux/Actions/cartActions";
-import Header from "./../components/Header";
+import Header from "../components/Header";
 
-const PaymentScreen = ({ history }) => {
+const Pagamento = ({ history }) => {
   window.scrollTo(0, 0);
 
   const cart = useSelector((state) => state.cart);
@@ -50,4 +50,4 @@ const PaymentScreen = ({ history }) => {
   );
 };
 
-export default PaymentScreen;
+export default Pagamento;

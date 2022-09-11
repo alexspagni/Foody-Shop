@@ -1,6 +1,6 @@
 import React from "react";
 
-const CalltoActionSection = () => { //Blocco NEWSLETTER
+const InviaEmail = () => { //Blocco NEWSLETTER
   return (
     <div className="subscribe-section bg-with-black">
       <div className="container">
@@ -21,4 +21,4 @@ const CalltoActionSection = () => { //Blocco NEWSLETTER
   );
 };
 
-export default CalltoActionSection;
+export default InviaEmail;

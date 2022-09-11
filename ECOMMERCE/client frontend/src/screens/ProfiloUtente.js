@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../components/Header";
-import ProfileTabs from "../components/profileComponents/ProfileTabs";
+import UserInfo from "../components/profileComponents/UserInfo";
 import { getUserDetails } from "../Redux/Actions/userActions";
-import Orders from "./../components/profileComponents/Orders";
+import OrdiniUtenti from "../components/profileComponents/OrdiniUtenti";
 import moment from "moment";
 import { listMyOrders } from "../Redux/Actions/OrderActions";
 
-const ProfileScreen = () => {
+const ProfiloUtente = () => {
   window.scrollTo(0, 0);
 
   const dispatch = useDispatch();
@@ -93,7 +93,7 @@ const ProfileScreen = () => {
               role="tabpanel"
               aria-labelledby="v-pills-home-tab"
             >
-              <ProfileTabs />
+              <UserInfo />
             </div>
             <div
               class="tab-pane fade"
@@ -101,7 +101,7 @@ const ProfileScreen = () => {
               role="tabpanel"
               aria-labelledby="v-pills-profile-tab"
             >
-              <Orders orders={orders} loading={loading} error={error} />
+              <OrdiniUtenti orders={orders} loading={loading} error={error} />
             </div>
           </div>
         </div>
@@ -110,4 +110,4 @@ const ProfileScreen = () => {
   );
 };
 
-export default ProfileScreen;
+export default ProfiloUtente;

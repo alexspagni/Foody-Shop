@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Header from "../components/Header";
 import { saveShippingAddress } from "../Redux/Actions/cartActions";
 
-const ShippingScreen = ({ history }) => {
+const Spedizione = ({ history }) => {
   window.scrollTo(0, 0);
 
   const cart = useSelector((state) => state.cart);
@@ -65,4 +65,4 @@ const ShippingScreen = ({ history }) => {
   );
 };
 
-export default ShippingScreen;
+export default Spedizione;

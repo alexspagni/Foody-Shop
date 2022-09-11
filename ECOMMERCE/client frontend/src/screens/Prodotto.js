@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Header from "./../components/Header";
+import Header from "../components/Header";
 
-import Message from "./../components/LoadingError/Error";
+import Message from "../components/LoadingError/Error";
 import { useDispatch, useSelector } from "react-redux";
 import {
   listProductDetails,
@@ -10,7 +10,7 @@ import Loading from "../components/LoadingError/Loading";
 
 
 
-const SingleProduct = ({ history, match }) => {
+const Prodotto = ({ history, match }) => {
   const [qty, setQty] = useState(1);
 
   const productId = match.params.id;
@@ -104,4 +104,4 @@ const SingleProduct = ({ history, match }) => {
   );
 };
 
-export default SingleProduct;
+export default Prodotto;

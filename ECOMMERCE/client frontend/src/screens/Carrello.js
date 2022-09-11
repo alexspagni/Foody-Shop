@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import Header from "./../components/Header";
+import Header from "../components/Header";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, removefromcart } from "./../Redux/Actions/cartActions";
+import { addToCart, removefromcart } from "../Redux/Actions/cartActions";
 
-const CartScreen = ({ match, location, history }) => {
+const Carrello = ({ match, location, history }) => {
   window.scrollTo(0, 0);
   const dispatch = useDispatch();
   const productId = match.params.id;
@@ -116,4 +116,4 @@ const CartScreen = ({ match, location, history }) => {
   );
 };
 
-export default CartScreen;
+export default Carrello;

@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import Message from "../components/LoadingError/Error";
 import Loading from "../components/LoadingError/Loading";
 import { register } from "../Redux/Actions/userActions";
-import Header from "./../components/Header";
+import Header from "../components/Header";
 
-const Register = ({ location, history }) => {
+const Registrazione = ({ location, history }) => {
   window.scrollTo(0, 0);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -71,4 +71,4 @@ const Register = ({ location, history }) => {
   );
 };
 
-export default Register;
+export default Registrazione;

@@ -5,7 +5,7 @@ import { listProduct } from "../../Redux/Actions/ProductActions";
 import Loading from "../LoadingError/Loading";
 import Message from "../LoadingError/Error";
 
-const ShopSection = (props) => {
+const SezioneAcquisti = (props) => {
   const { keyword } = props;
   const dispatch = useDispatch();
 
@@ -66,4 +66,4 @@ const ShopSection = (props) => {
   );
 };
 
-export default ShopSection;
+export default SezioneAcquisti;

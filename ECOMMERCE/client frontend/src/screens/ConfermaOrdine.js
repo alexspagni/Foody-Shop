@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { createOrder } from "../Redux/Actions/OrderActions";
 import { ORDER_CREATE_RESET } from "../Redux/Constants/OrderConstants";
-import Header from "./../components/Header";
-import Message from "./../components/LoadingError/Error";
+import Header from "../components/Header";
+import Message from "../components/LoadingError/Error";
 
-const PlaceOrderScreen = ({ history }) => {
+const ConfermaOrdine = ({ history }) => {
   window.scrollTo(0, 0);
 
   const dispatch = useDispatch();
@@ -36,7 +36,6 @@ const PlaceOrderScreen = ({ history }) => {
   useEffect(() => {
     if (success) {
       history.push(`/order/${order._id}`);
-      window.location.reload()
       dispatch({ type: ORDER_CREATE_RESET });
     }
   }, [history, dispatch, success, order]);
@@ -191,4 +190,4 @@ const PlaceOrderScreen = ({ history }) => {
   );
 };
 
-export default PlaceOrderScreen;
+export default ConfermaOrdine;

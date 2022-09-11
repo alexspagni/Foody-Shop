@@ -3,39 +3,39 @@ import "./App.css";
 import "./responsive.css";
 import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import HomeScreen from "./screens/HomeScreen";
-import SingleProduct from "./screens/SingleProduct";
+import Home from "./screens/Home";
+import Prodotto from "./screens/Prodotto";
 import Login from "./screens/Login";
-import Register from "./screens/Register";
-import CartScreen from "./screens/CartScreen";
-import ShippingScreen from "./screens/ShippingScreen";
-import ProfileScreen from "./screens/ProfileScreen";
-import PaymentScreen from "./screens/PaymentScreen";
-import PlaceOrderScreen from "./screens/PlaceOrderScreen";
-import OrderScreen from "./screens/OrderScreen";
-import NotFound from "./screens/NotFound";
-import PrivateRouter from "./PrivateRouter";
+import Registrazione from "./screens/Registazione";
+import Carrello from "./screens/Carrello";
+import Spedizione from "./screens/Spedizione";
+import Profilo from "./screens/ProfiloUtente";
+import Pagamento from "./screens/Pagamento";
+import CondermaOrdine from "./screens/ConfermaOrdine";
+import Ordine from "./screens/Ordini";
+import NotFound from "./screens/PaginaNonTrovata";
+import Autentication from "./Autentication";
 
 const App = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/" component={HomeScreen} exact />
-        <Route path="/search/:keyword" component={HomeScreen} exact />
+        <Route path="/" component={Home} exact />
+        <Route path="/search/:keyword" component={Home} exact />
         <Route
           path="/search/:keyword"
-          component={HomeScreen}
+          component={Home}
           exact
         />
-        <Route path="/products/:id" component={SingleProduct} />
+        <Route path="/products/:id" component={Prodotto} />
         <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
-        <PrivateRouter path="/profile" component={ProfileScreen} />
-        <Route path="/cart/:id?" component={CartScreen} />
-        <PrivateRouter path="/shipping" component={ShippingScreen} />
-        <PrivateRouter path="/payment" component={PaymentScreen} />
-        <PrivateRouter path="/placeorder" component={PlaceOrderScreen} />
-        <PrivateRouter path="/order/:id" component={OrderScreen} />
+        <Route path="/register" component={Registrazione} />
+        <Autentication path="/profile" component={Profilo} />
+        <Route path="/cart/:id?" component={Carrello} />
+        <Autentication path="/shipping" component={Spedizione} />
+        <Autentication path="/payment" component={Pagamento} />
+        <Autentication path="/placeorder" component={CondermaOrdine} />
+        <Autentication path="/order/:id" component={Ordine} />
         <Route path="*" component={NotFound} />
       </Switch>
     </Router>
