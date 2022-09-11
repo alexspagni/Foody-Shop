@@ -1,11 +1,12 @@
 import express from "express";
 import asyncHandler from "express-async-handler";
 import { admin, protect } from "../Middleware/AuthMiddleware.js";
-import Order from "./../Models/OrderModel.js";
+import Order from "../Models/OrderModel.js";
+import Product from "../Models/ProductModel.js";
 
 const orderRouter = express.Router();
 
-// CREATE ORDER
+// CREA UN ORDINE
 orderRouter.post(
   "/",
   protect,
@@ -25,6 +26,12 @@ orderRouter.post(
       throw new Error("No order items");
       return;
     } else {
+      for (let i=0;i<orderItems.length;i++){
+
+        const product= await Product.findById(orderItems[i].product)
+        product.countInStock=product.countInStock-orderItems[i].qty
+        product.save();
+      }
       const order = new Order({
         orderItems,
         user: req.user._id,
@@ -42,7 +49,7 @@ orderRouter.post(
     }
   })
 );
-// USER LOGIN ORDERS
+//ì RECUPERA ORDINI UTENTI
 orderRouter.get(
   "/",
   protect,
@@ -53,7 +60,7 @@ orderRouter.get(
   })
 );
 
-// GET ORDER BY ID
+// RECUPERA UN SINGOLO ORDINE IN BASE AL SUO ID
 orderRouter.get(
   "/:id",
   protect,
@@ -72,7 +79,7 @@ orderRouter.get(
   })
 );
 
-// ORDER IS PAID
+// PAGA ORDINE
 orderRouter.put(
   "/:id/pay",
   protect,

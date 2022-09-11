@@ -1,11 +1,11 @@
 import express from "express";
 import asyncHandler from "express-async-handler";
-import Product from "./../Models/ProductModel.js";
-import { admin, protect } from "./../Middleware/AuthMiddleware.js";
+import Product from "../Models/ProductModel.js";
+import { admin, protect } from "../Middleware/AuthMiddleware.js";
 
 const productRoute = express.Router();
 
-// GET ALL PRODUCT
+// RECUPERA TUTTI I PRODOTTI
 productRoute.get(
   "/",
   asyncHandler(async (req, res) => {
@@ -24,7 +24,7 @@ productRoute.get(
 );
 
 
-// GET SINGLE PRODUCT
+//RECUPERA UN SINGOLO PRODOTTO
 productRoute.get(
   "/:id",
   asyncHandler(async (req, res) => {
@@ -37,7 +37,7 @@ productRoute.get(
     }
   })
 );
-// DELETE PRODUCT
+//ELIMINA UN PRODOTTO
 productRoute.delete(
   "/:id",
   protect,
@@ -54,7 +54,7 @@ productRoute.delete(
   })
 );
 
-// CREATE PRODUCT
+// CREA UN NUOVO PRODOTTO
 productRoute.post(
   "/",
   protect,
@@ -85,7 +85,7 @@ productRoute.post(
   })
 );
 
-// UPDATE PRODUCT
+// AGGIORNA UN PRODOTTO
 productRoute.put(
   "/:id",
   protect,

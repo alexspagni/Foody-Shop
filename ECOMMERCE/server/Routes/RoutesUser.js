@@ -1,8 +1,8 @@
 import express from "express";
 import asyncHandler from "express-async-handler";
 import { protect, admin } from "../Middleware/AuthMiddleware.js";
-import generateToken from "../utils/generateToken.js";
-import User from "./../Models/UserModel.js";
+import generaToken from "../utils/GeneraToken.js";
+import User from "../Models/UserModel.js";
 
 const userRouter = express.Router();
 
@@ -19,7 +19,7 @@ userRouter.post(
         name: user.name,
         email: user.email,
         isAdmin: user.isAdmin,
-        token: generateToken(user._id),
+        token: generaToken(user._id),
         createdAt: user.createdAt,
       });
     } else {
@@ -29,7 +29,7 @@ userRouter.post(
   })
 );
 
-// REGISTER
+// REGISTRAZIONE
 userRouter.post(
   "/",
   asyncHandler(async (req, res) => {
@@ -54,7 +54,7 @@ userRouter.post(
         name: user.name,
         email: user.email,
         isAdmin: user.isAdmin,
-        token: generateToken(user._id),
+        token: generaToken(user._id),
       });
     } else {
       res.status(400);
@@ -63,7 +63,7 @@ userRouter.post(
   })
 );
 
-// PROFILE
+// PROFILO UTENTE
 userRouter.get(
   "/profile",
   protect,
@@ -85,7 +85,7 @@ userRouter.get(
   })
 );
 
-// UPDATE PROFILE
+// AGGIORNA PROFILO UTENTE
 userRouter.put(
   "/profile",
   protect,
@@ -105,7 +105,7 @@ userRouter.put(
         email: updatedUser.email,
         isAdmin: updatedUser.isAdmin,
         createdAt: updatedUser.createdAt,
-        token: generateToken(updatedUser._id),
+        token: generaToken(updatedUser._id),
       });
     } else {
       res.status(404);
