@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../components/Header";
-import { saveShippingAddress } from "../Redux/Actions/cartActions";
+import { saveShippingAddress } from "../Redux/Actions/CartActions";
 
 const Spedizione = ({ history }) => {
   window.scrollTo(0, 0);

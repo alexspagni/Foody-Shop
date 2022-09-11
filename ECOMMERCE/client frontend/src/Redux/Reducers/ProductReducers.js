@@ -7,7 +7,7 @@ import {
   PRODUCT_LIST_SUCCESS,
 } from "../Constants/ProductConstants";
 
-// PRODUCT LIST
+// LISTA DI TUTTI I PRODOTTI
 export const productListReducer = (state = { products: [] }, action) => {
   switch (action.type) {
     case PRODUCT_LIST_REQUEST:
@@ -24,7 +24,7 @@ export const productListReducer = (state = { products: [] }, action) => {
   }
 };
 
-// SINGLE PRODUCT
+// RECUPERA UN SINGOLO PRODOTTO
 export const productDetailsReducer = (
   state = { product: { } },
   action

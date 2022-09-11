@@ -16,7 +16,7 @@ import axios from "axios";
 import { CART_CLEAR_ITEMS } from "../Constants/CartConstants";
 import { logout } from "./userActions";
 
-// CREATE ORDER
+//CREA UN NUOVO ORDINE
 export const createOrder = (order) => async (dispatch, getState) => {
   try {
     dispatch({ type: ORDER_CREATE_REQUEST });
@@ -52,7 +52,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
   }
 };
 
-// ORDER DETAILS
+//OTTIENI DETTAGLI ORDINE
 export const getOrderDetails = (id) => async (dispatch, getState) => {
   try {
     dispatch({ type: ORDER_DETAILS_REQUEST });
@@ -84,7 +84,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
   }
 };
 
-// ORDER PAY
+// PAGA UN ORDINE
 export const payOrder =
   (orderId, paymentResult) => async (dispatch, getState) => {
     try {
@@ -122,7 +122,7 @@ export const payOrder =
     }
   };
 
-// USER ORDERS
+// ORDINI DI UN UTENTE
 export const listMyOrders = () => async (dispatch, getState) => {
   try {
     dispatch({ type: ORDER_LIST_MY_REQUEST });

@@ -10,7 +10,7 @@ import {
 } from "../Constants/ProductConstants";
 
 
-// PRODUCT LIST
+// RECUPERA TUTTI I PRODOTTI IN BASE AD UN CERTO PATTERN
 export const listProduct =
   (keyword = " ") =>
   async (dispatch) => {
@@ -31,7 +31,7 @@ export const listProduct =
     }
   };
 
-// SINGLE PRODUCT
+// RECUPERA UN SINGOLO PRODOTTO TRAMITE IL SUO ID
 export const listProductDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_DETAILS_REQUEST });

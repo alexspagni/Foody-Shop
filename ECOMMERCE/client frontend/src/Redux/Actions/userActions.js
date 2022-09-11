@@ -56,7 +56,7 @@ export const logout = () => (dispatch) => {
   dispatch({ type: ORDER_LIST_MY_RESET });
 };
 
-// REGISTER
+// REGISTRAZIONE
 export const register = (name, email, password) => async (dispatch) => {
   try {
     dispatch({ type: USER_REGISTER_REQUEST });
@@ -87,7 +87,7 @@ export const register = (name, email, password) => async (dispatch) => {
   }
 };
 
-// USER DETAILS
+// DETTAGLI UTENTE
 export const getUserDetails = (id) => async (dispatch, getState) => {
   try {
     dispatch({ type: USER_DETAILS_REQUEST });
@@ -118,7 +118,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
   }
 };
 
-// UPDATE PROFILE
+// AGGIORNA CREDENZIALI UTENTE
 export const updateUserProfile = (user) => async (dispatch, getState) => {
   try {
     dispatch({ type: USER_UPDATE_PROFILE_REQUEST });
