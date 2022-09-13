@@ -1,3 +1,6 @@
+
+//Questa pagina veniva utilizzata per mostrare i prodotti in origine nella versione statica. Ora i prodotti ovviamente
+// vengono presi dal database
 const products = [
   {
     _id: "1",

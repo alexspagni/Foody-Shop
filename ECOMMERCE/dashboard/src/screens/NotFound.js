@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+//Viene richiamata nel momento in cui si accede ad una pagina non esistente. Al suo interno vi è un bottone che riporta alla Home Page
 const NotFound = () => {
   return (
     <>

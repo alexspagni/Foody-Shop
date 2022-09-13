@@ -25,10 +25,12 @@ const Header = () => {
     });
   }, []);
 
+  //richiama la funzione di logout
   const logoutHandler = () => {
     dispatch(logout());
   };
 
+  //codice html per la creazione della barra in alto
   return (
     <header className="main-header navbar">
       <div className="col-search">

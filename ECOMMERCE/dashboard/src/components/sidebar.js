@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 
+// Codice html per la creazione della navbar a lato pagina
 const Sidebar = () => {
   return (
     <div>

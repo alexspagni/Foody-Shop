@@ -17,7 +17,7 @@ const UserComponent = () => {
   return (
     <section className="content-main">
       <div className="content-header">
-        <h2 className="content-title">Clienti</h2>
+        <h2 className="content-title">Utenti</h2>
         <div>
           <Link to="#" className="btn btn-primary">
             <i className="material-icons md-plus"></i> Aggiorna

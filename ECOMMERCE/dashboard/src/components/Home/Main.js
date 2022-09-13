@@ -14,10 +14,10 @@ const Main = () => {
         <div className="content-header">
           <h2 className="content-title"> Dashboard </h2>
         </div>
-        {/* Top Total */}
+        {/* Richiama la pagina ./TopTotal al cui interno viene calcolato e mostrato il totale delle vendite, del numero acquisti e di prodotti*/}
         <TopTotal orders={orders} products={products} />
 
-        {/* LATEST ORDER */}
+        {/*Richiama la pagina ./LatestOrder grazie alla quale vengono elencati i nuovi ordini*/}
         <div className="card mb-4 shadow-sm">
           <LatestOrder orders={orders} loading={loading} error={error} />
         </div>
