@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import Header from "../components/Header";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, removefromcart } from "../Redux/Actions/CartActions";
-
+import { addToCart} from "../Redux/Actions/cartActions";
+import {removefromcart} from "../Redux/Actions/cartActions"
 const Carrello = ({ match, location, history }) => {
   window.scrollTo(0, 0);
   const dispatch = useDispatch();
