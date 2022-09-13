@@ -20,7 +20,7 @@ const PaginaNonTrovata = () => {
             </Link>
           </button>
         </div>
-      </div>
+      </div>.
     </>
   );
 };
