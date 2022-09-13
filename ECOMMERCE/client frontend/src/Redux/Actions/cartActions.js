@@ -51,6 +51,6 @@ export const savePaymentMethod = (data) => (dispatch) => {
     type: CART_SAVE_PAYMENT_METHOD,
     payload: data,
   });
-
+console.log("sono qui")
   localStorage.setItem("paymentMethod", JSON.stringify(data));
 };
