@@ -104,7 +104,7 @@ const UserInfo = () => {
             />
           </div>
         </div>
-        <button type="submit">Aggiorna Profile</button>
+        <button type="submit">Aggiorna Profilo</button>
       </form>
     </>
   );
