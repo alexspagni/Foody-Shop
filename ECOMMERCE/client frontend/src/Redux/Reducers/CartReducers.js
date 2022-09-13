@@ -5,7 +5,7 @@ import {
   CART_SAVE_PAYMENT_METHOD,
   CART_SAVE_SHIPPING_ADDRESS,
 } from "../Constants/CartConstants";
-
+// GESTISCI CARRELLO
 export const cartReducer = (
   state = { cartItems: [], shippingAddress: {} },
   action

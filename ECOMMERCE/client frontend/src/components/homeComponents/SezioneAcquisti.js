@@ -1,22 +1,20 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import Rating from "./Rating";
-import Pagination from "./pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { listProduct } from "../../Redux/Actions/ProductActions";
 import Loading from "../LoadingError/Loading";
 import Message from "../LoadingError/Error";
 
-const ShopSection = (props) => {
-  const { keyword, pagenumber } = props;
+const SezioneAcquisti = (props) => {
+  const { keyword } = props;
   const dispatch = useDispatch();
 
   const productList = useSelector((state) => state.productList);
-  const { loading, error, products, page, pages } = productList;
+  const { loading, error, products} = productList;
 
   useEffect(() => {
-    dispatch(listProduct(keyword, pagenumber));
-  }, [dispatch, keyword, pagenumber]);
+    dispatch(listProduct(keyword));
+  }, [dispatch, keyword]);
   return (
     <>
       <div className="container">
@@ -50,11 +48,6 @@ const ShopSection = (props) => {
                                 {product.name}
                               </Link>
                             </p>
-
-                            <Rating
-                              value={product.rating}
-                              text={`${product.numReviews} reviews`}
-                            />
                             <h3>€{product.price}</h3>
                           </div>
                         </div>
@@ -63,12 +56,7 @@ const ShopSection = (props) => {
                   </>
                 )}
 
-                {/* Pagination */}
-                <Pagination
-                  pages={pages}
-                  page={page}
-                  keyword={keyword ? keyword : ""}
-                />
+           
               </div>
             </div>
           </div>
@@ -78,4 +66,4 @@ const ShopSection = (props) => {
   );
 };
 
-export default ShopSection;
+export default SezioneAcquisti;

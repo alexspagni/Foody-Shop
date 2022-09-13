@@ -1,8 +1,8 @@
 import express from "express";
 import asyncHandler from "express-async-handler";
-import { protect, admin } from "../Middleware/AuthMiddleware.js";
-import generateToken from "../utils/generateToken.js";
-import User from "./../Models/UserModel.js";
+import { protect } from "../Middleware/AuthMiddleware.js";
+import generaToken from "../utils/GeneraToken.js";
+import User from "../Models/UserModel.js";
 
 const userRouter = express.Router();
 
@@ -19,7 +19,7 @@ userRouter.post(
         name: user.name,
         email: user.email,
         isAdmin: user.isAdmin,
-        token: generateToken(user._id),
+        token: generaToken(user._id),
         createdAt: user.createdAt,
       });
     } else {
@@ -29,7 +29,7 @@ userRouter.post(
   })
 );
 
-// REGISTER
+// REGISTRAZIONE
 userRouter.post(
   "/",
   asyncHandler(async (req, res) => {
@@ -41,7 +41,7 @@ userRouter.post(
       res.status(400);
       throw new Error("User already exists");
     }
-
+// User.Crete crea un nuovo utente e lo salva subito nel database. Quindi non bisogna fare anche user.save
     const user = await User.create({
       name,
       email,
@@ -54,7 +54,7 @@ userRouter.post(
         name: user.name,
         email: user.email,
         isAdmin: user.isAdmin,
-        token: generateToken(user._id),
+        token: generaToken(user._id),
       });
     } else {
       res.status(400);
@@ -63,7 +63,7 @@ userRouter.post(
   })
 );
 
-// PROFILE
+// PROFILO UTENTE
 userRouter.get(
   "/profile",
   protect,
@@ -85,19 +85,19 @@ userRouter.get(
   })
 );
 
-// UPDATE PROFILE
+// AGGIORNA PROFILO UTENTE
 userRouter.put(
   "/profile",
   protect,
   asyncHandler(async (req, res) => {
     const user = await User.findById(req.user._id);
-
     if (user) {
       user.name = req.body.name || user.name;
       user.email = req.body.email || user.email;
       if (req.body.password) {
         user.password = req.body.password;
       }
+      // in questo caso save va a sovrascivere i dati dell'utente con i nuovi inseriti
       const updatedUser = await user.save();
       res.json({
         _id: updatedUser._id,
@@ -105,23 +105,12 @@ userRouter.put(
         email: updatedUser.email,
         isAdmin: updatedUser.isAdmin,
         createdAt: updatedUser.createdAt,
-        token: generateToken(updatedUser._id),
+        token: generaToken(updatedUser._id),
       });
     } else {
       res.status(404);
       throw new Error("User not found");
     }
-  })
-);
-
-// GET ALL USER ADMIN
-userRouter.get(
-  "/",
-  protect,
-  admin,
-  asyncHandler(async (req, res) => {
-    const users = await User.find({});
-    res.json(users);
   })
 );
 

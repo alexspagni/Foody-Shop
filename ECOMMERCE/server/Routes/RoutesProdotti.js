@@ -1,16 +1,14 @@
 import express from "express";
 import asyncHandler from "express-async-handler";
-import Product from "./../Models/ProductModel.js";
-import { admin, protect } from "./../Middleware/AuthMiddleware.js";
+import Product from "../Models/ProductModel.js";
+import { admin, protect } from "../Middleware/AuthMiddleware.js";
 
 const productRoute = express.Router();
 
-// GET ALL PRODUCT
+// RECUPERA TUTTI I PRODOTTI
 productRoute.get(
   "/",
   asyncHandler(async (req, res) => {
-    const pageSize = 12;
-    const page = Number(req.query.pageNumber) || 1;
     const keyword = req.query.keyword
       ? {
           name: {
@@ -19,27 +17,14 @@ productRoute.get(
           },
         }
       : {};
-    const count = await Product.countDocuments({ ...keyword });
-    const products = await Product.find({ ...keyword })
-      .limit(pageSize)
-      .skip(pageSize * (page - 1))
-      .sort({ _id: -1 });
-    res.json({ products, page, pages: Math.ceil(count / pageSize) });
+      //recupero tutti gli elementi che macciano la regex scritta sopra e faccio in modo di ritornarne solo una certa quantità di prodotti
+    const products = await Product.find({ ...keyword });
+    res.json({ products});
   })
 );
 
-// ADMIN GET ALL PRODUCT WITHOUT SEARCH AND PEGINATION
-productRoute.get(
-  "/all",
-  protect,
-  admin,
-  asyncHandler(async (req, res) => {
-    const products = await Product.find({}).sort({ _id: -1 });
-    res.json(products);
-  })
-);
 
-// GET SINGLE PRODUCT
+//RECUPERA UN SINGOLO PRODOTTO
 productRoute.get(
   "/:id",
   asyncHandler(async (req, res) => {
@@ -52,46 +37,7 @@ productRoute.get(
     }
   })
 );
-
-// PRODUCT REVIEW
-productRoute.post(
-  "/:id/review",
-  protect,
-  asyncHandler(async (req, res) => {
-    const { rating, comment } = req.body;
-    const product = await Product.findById(req.params.id);
-
-    if (product) {
-      const alreadyReviewed = product.reviews.find(
-        (r) => r.user.toString() === req.user._id.toString()
-      );
-      if (alreadyReviewed) {
-        res.status(400);
-        throw new Error("Product already Reviewed");
-      }
-      const review = {
-        name: req.user.name,
-        rating: Number(rating),
-        comment,
-        user: req.user._id,
-      };
-
-      product.reviews.push(review);
-      product.numReviews = product.reviews.length;
-      product.rating =
-        product.reviews.reduce((acc, item) => item.rating + acc, 0) /
-        product.reviews.length;
-
-      await product.save();
-      res.status(201).json({ message: "Reviewed Added" });
-    } else {
-      res.status(404);
-      throw new Error("Product not Found");
-    }
-  })
-);
-
-// DELETE PRODUCT
+//ELIMINA UN PRODOTTO
 productRoute.delete(
   "/:id",
   protect,
@@ -108,7 +54,7 @@ productRoute.delete(
   })
 );
 
-// CREATE PRODUCT
+// CREA UN NUOVO PRODOTTO
 productRoute.post(
   "/",
   protect,
@@ -139,7 +85,7 @@ productRoute.post(
   })
 );
 
-// UPDATE PRODUCT
+// AGGIORNA UN PRODOTTO
 productRoute.put(
   "/:id",
   protect,

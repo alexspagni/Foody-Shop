@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../LoadingError/Error";
-import Toast from "./../LoadingError/Toast";
-import Loading from "./../LoadingError/Loading";
+import Toast from "../LoadingError/Toast";
+import Loading from "../LoadingError/Loading";
 import { toast } from "react-toastify";
 import { updateUserProfile } from "../../Redux/Actions/userActions";
 
-const ProfileTabs = () => {
+const UserInfo = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -44,6 +44,7 @@ const ProfileTabs = () => {
       }
     } else {
       dispatch(updateUserProfile({ id: user._id, name, email, password }));
+      // se un container non sta visualizzando un messaggio toast allota entro nella funzione
       if (!toast.isActive(toastId.current)) {
         toastId.current = toast.success("Profile Updated", Toastobjects);
       }
@@ -109,4 +110,4 @@ const ProfileTabs = () => {
   );
 };
 
-export default ProfileTabs;
+export default UserInfo;

@@ -1,6 +1,6 @@
 import React from "react";
 
-const ContactInfo = () => { //BLOCCO FOOTER
+const Contatti = () => { //BLOCCO FOOTER
   return (
     <div className="contactInfo container">
       <div className="row">
@@ -36,4 +36,4 @@ const ContactInfo = () => { //BLOCCO FOOTER
   );
 };
 
-export default ContactInfo;
+export default Contatti;

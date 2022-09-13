@@ -1,11 +1,12 @@
 import express from "express";
 import asyncHandler from "express-async-handler";
 import { admin, protect } from "../Middleware/AuthMiddleware.js";
-import Order from "./../Models/OrderModel.js";
+import Order from "../Models/OrderModel.js";
+import Product from "../Models/ProductModel.js";
 
 const orderRouter = express.Router();
 
-// CREATE ORDER
+// CREA UN ORDINE
 orderRouter.post(
   "/",
   protect,
@@ -25,46 +26,41 @@ orderRouter.post(
       throw new Error("No order items");
       return;
     } else {
+      for (let i=0;i<orderItems.length;i++){
+
+        const product= await Product.findById(orderItems[i].product)
+        product.countInStock=product.countInStock-orderItems[i].qty
+        product.save();
+      }
       const order = new Order({
         orderItems,
         user: req.user._id,
         shippingAddress,
         paymentMethod,
-        itemsPrice,
+        // nel caso inserisci itemsPrice qui se NON FUNZIONA QUI
         taxPrice,
         shippingPrice,
         totalPrice,
       });
 
       const createOrder = await order.save();
+      // in create order si avrà anche l'id dell'ordine
       res.status(201).json(createOrder);
     }
   })
 );
-
-// ADMIN GET ALL ORDERS
-orderRouter.get(
-  "/all",
-  protect,
-  admin,
-  asyncHandler(async (req, res) => {
-    const orders = await Order.find({})
-      .sort({ _id: -1 })
-      .populate("user", "id name email");
-    res.json(orders);
-  })
-);
-// USER LOGIN ORDERS
+//ì RECUPERA ORDINI UTENTI
 orderRouter.get(
   "/",
   protect,
   asyncHandler(async (req, res) => {
+    // vado ad estrarre tutti gli ordini che hanno come campo id pari all'id dell'utente che sta facendo il fetch degli ordini
     const order = await Order.find({ user: req.user._id }).sort({ _id: -1 });
     res.json(order);
   })
 );
 
-// GET ORDER BY ID
+// RECUPERA UN SINGOLO ORDINE IN BASE AL SUO ID
 orderRouter.get(
   "/:id",
   protect,
@@ -83,7 +79,7 @@ orderRouter.get(
   })
 );
 
-// ORDER IS PAID
+// PAGA ORDINE
 orderRouter.put(
   "/:id/pay",
   protect,
@@ -109,24 +105,5 @@ orderRouter.put(
   })
 );
 
-// ORDER IS PAID
-orderRouter.put(
-  "/:id/delivered",
-  protect,
-  asyncHandler(async (req, res) => {
-    const order = await Order.findById(req.params.id);
-
-    if (order) {
-      order.isDelivered = true;
-      order.deliveredAt = Date.now();
-
-      const updatedOrder = await order.save();
-      res.json(updatedOrder);
-    } else {
-      res.status(404);
-      throw new Error("Order Not Found");
-    }
-  })
-);
 
 export default orderRouter;
